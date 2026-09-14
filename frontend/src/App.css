@@ -7,6 +7,7 @@
   --muted: #8b93a5;
   --amber: #4c7eff;
   --teal: #38b6a6;
+  --emerald: #2ecf82;
   --max: 1120px;
 }
 
@@ -327,6 +328,10 @@ section {
   border-color: var(--teal);
 }
 
+.service-card--emerald:hover {
+  border-color: var(--emerald);
+}
+
 .service-card-watermark {
   position: absolute;
   top: -30px;
@@ -360,6 +365,11 @@ section {
 .service-card--teal .service-badge {
   color: var(--teal);
   border: 1px solid rgba(95, 184, 168, 0.35);
+}
+
+.service-card--emerald .service-badge {
+  color: var(--emerald);
+  border: 1px solid rgba(46, 207, 130, 0.35);
 }
 
 .service-card h3 {

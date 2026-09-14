@@ -42,10 +42,50 @@ const SERVICES = [
   {
     code: 'BE',
     accent: 'amber',
-    title: 'Backend & API Engineering',
+    title: 'Backend & API Integration',
     description:
       'Express APIs, database design, and CI/CD pipelines that keep the system reliable as usage — and the AI layer on top of it — grows.',
     stack: ['Node.js', 'Express', 'MongoDB'],
+  },
+  {
+    code: 'WM',
+    accent: 'emerald',
+    title: 'Website Management & Maintenance',
+    description:
+      'Reliable ongoing management for your website, including updates, performance optimization, security, bug fixes, and technical support to keep everything running smoothly.',
+    stack: ['Maintenance', 'Optimization', 'Technical Support'],
+  },
+  {
+    code: 'API',
+    accent: 'amber',
+    title: 'API & Third-Party Integrations',
+    description:
+      'Connect your website or application with the tools your business already uses, including payment systems, authentication, CRMs, communication platforms, and external APIs.',
+    stack: ['REST APIs', 'Webhooks', 'Third-Party APIs'],
+  },
+  {
+    code: 'CD',
+    accent: 'teal',
+    title: 'Deployment & Cloud Solutions',
+    description:
+      'Production deployment and infrastructure setup for web applications, APIs, databases, and AI services with reliable environments and automated delivery workflows.',
+    stack: ['CI/CD', 'Cloud Deployment', 'GitHub'],
+  },
+  {
+    code: 'BA',
+    accent: 'teal',
+    title: 'AI & Business Automation',
+    description:
+      'Automate repetitive business workflows using AI, APIs, and intelligent systems to reduce manual work and help teams operate more efficiently.',
+    stack: ['AI Automation', 'APIs', 'Workflows'],
+  },
+  {
+    code: 'PO',
+    accent: 'amber',
+    title: 'Website Performance Optimization',
+    description:
+      'Improve website speed, responsiveness, and overall user experience by identifying performance bottlenecks and optimizing the application for faster delivery.',
+    stack: ['Performance Audit', 'Optimization', 'Core Web Vitals'],
   },
 ];
 
@@ -55,7 +95,7 @@ function Services() {
       <div className="container">
         <div className="section-head">
           <span className="eyebrow">Services</span>
-          <h2>What I build</h2>
+          <h2>What we build</h2>
           <p>
             Everything below can stand alone, but they're built to connect —
             most projects start on the frontend and end with an AI layer

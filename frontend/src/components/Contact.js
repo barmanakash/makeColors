@@ -1,12 +1,17 @@
 import { useState } from 'react';
 
 const SERVICE_OPTIONS = [
-  'Full-Stack Web Development',
   'AI Agent Development',
+  'AI & Business Automation',
   'RAG Pipeline',
   'Custom Chatbot',
+  'Full-Stack Web Development',
   'Frontend & UI',
-  'Backend & API Engineering',
+  'Backend & API Integration',
+  'Website Management & Maintenance',
+  'API & Third-Party Integrations',
+  'Deployment & Cloud Solutions',
+  'Website Performance Optimization',
   'Something else',
 ];
 
@@ -55,7 +60,7 @@ function Contact() {
       setStatus('error');
       setErrorMessage(
         err.message ||
-          'Could not reach the server. Make sure the backend is running.'
+        'Could not reach the server. Make sure the backend is running.'
       );
     }
   }
@@ -68,18 +73,9 @@ function Contact() {
             <span className="eyebrow">Contact</span>
             <h2>Start a project</h2>
             <p>
-              Tell me a bit about what you're building — a product that
-              needs a frontend and backend, or an AI layer wired into
-              something that already exists. I read every message myself.
+              Tell us about your project vision—whether you need a complete full-stack product built from scratch,
+              or AI capabilities integrated into an existing platform.
             </p>
-
-            <div className="contact-direct">
-              <a href="mailto:1998akashbarman@gmail.com">
-                1998akashbarman@gmail.com
-              </a>
-              <span>+91 62610 81914</span>
-              <span>Jabalpur, Madhya Pradesh, India</span>
-            </div>
           </div>
 
           <form className="contact-form" onSubmit={handleSubmit} noValidate>
