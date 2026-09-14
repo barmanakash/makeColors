@@ -168,7 +168,8 @@ section {
   transition: color 0.15s ease;
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links a.is-active {
   color: var(--ink);
 }
 
@@ -776,6 +777,9 @@ section {
     font-size: 17px;
     color: var(--ink);
     border-bottom: 1px solid var(--border);
+  }
+  .nav-mobile-panel.open a.is-active {
+    color: var(--amber);
   }
   .nav-cta {
     display: none;

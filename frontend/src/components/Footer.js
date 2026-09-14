@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 function Footer() {
   const year = new Date().getFullYear();
 
@@ -16,10 +18,10 @@ function Footer() {
 
         <div className="footer-col">
           <h4>Navigate</h4>
-          <a href="#services">Services</a>
-          <a href="#process">How it works</a>
-          <a href="#about">Background</a>
-          <a href="#contact">Contact</a>
+          <Link to="/services">Services</Link>
+          <Link to="/how-it-works">How it works</Link>
+          <Link to="/about">About</Link>
+          <Link to="/contact">Contact</Link>
         </div>
 
         <div className="footer-col">

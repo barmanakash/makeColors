@@ -1,35 +1,40 @@
 import { useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import AnimatedBrand from './AnimatedBrand';
 
 function Navbar() {
   const [open, setOpen] = useState(false);
 
   const links = [
-    { label: 'Services', href: '#services' },
-    { label: 'How it works', href: '#process' },
-    { label: 'About', href: '#about' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Services', to: '/services' },
+    { label: 'How it works', to: '/how-it-works' },
+    { label: 'About', to: '/about' },
+    { label: 'Contact', to: '/contact' },
   ];
 
   return (
     <header className="navbar">
       <div className="container">
-        <a href="#top" className="nav-brand">
+        <Link to="/" className="nav-brand">
           <AnimatedBrand text="makeColors" />
-        </a>
+        </Link>
 
         <nav className="nav-links">
           {links.map((link) => (
-            <a key={link.href} href={link.href}>
+            <NavLink
+              key={link.to}
+              to={link.to}
+              className={({ isActive }) => (isActive ? 'is-active' : undefined)}
+            >
               {link.label}
-            </a>
+            </NavLink>
           ))}
         </nav>
 
         <div className="nav-cta">
-          <a href="#contact" className="btn btn-primary">
+          <Link to="/contact" className="btn btn-primary">
             Start a project
-          </a>
+          </Link>
         </div>
 
         <button
@@ -45,13 +50,18 @@ function Navbar() {
 
       <div className={`nav-mobile-panel${open ? ' open' : ''}`}>
         {links.map((link) => (
-          <a key={link.href} href={link.href} onClick={() => setOpen(false)}>
+          <NavLink
+            key={link.to}
+            to={link.to}
+            onClick={() => setOpen(false)}
+            className={({ isActive }) => (isActive ? 'is-active' : undefined)}
+          >
             {link.label}
-          </a>
+          </NavLink>
         ))}
-        <a href="#contact" onClick={() => setOpen(false)}>
+        <Link to="/contact" onClick={() => setOpen(false)}>
           Start a project
-        </a>
+        </Link>
       </div>
     </header>
   );

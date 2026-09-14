@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import HeroGraphic3D from './HeroGraphic3D';
 
 function Hero() {
@@ -15,12 +16,12 @@ function Hero() {
           </p>
 
           <div className="hero-actions">
-            <a href="#contact" className="btn btn-primary">
+            <Link to="/contact" className="btn btn-primary">
               Start a project
-            </a>
-            <a href="#services" className="btn btn-secondary">
+            </Link>
+            <Link to="/services" className="btn btn-secondary">
               See what I build
-            </a>
+            </Link>
           </div>
 
           <div className="hero-meta">
