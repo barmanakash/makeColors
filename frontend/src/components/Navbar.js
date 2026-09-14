@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import AnimatedBrand from './AnimatedBrand';
 
 function Navbar() {
   const [open, setOpen] = useState(false);
@@ -14,7 +15,7 @@ function Navbar() {
     <header className="navbar">
       <div className="container">
         <a href="#top" className="nav-brand">
-          Akash Barman<span>.</span>
+          <AnimatedBrand text="makeColors" />
         </a>
 
         <nav className="nav-links">

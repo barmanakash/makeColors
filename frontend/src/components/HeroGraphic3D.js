@@ -54,12 +54,12 @@ function rotate(pos, angleY, tiltX) {
   return [x1, y1, z2];
 }
 
-function projectPoint([x, y, z], width, height) {
+function projectPoint([x, y, z], width, height, sceneScale) {
   const focal = 620;
   const scale = focal / (focal + z + 260);
   return {
-    x: width / 2 + x * scale,
-    y: height / 2 + y * scale,
+    x: width / 2 + x * scale * sceneScale,
+    y: height / 2 + y * scale * sceneScale,
     scale,
     depth: z,
   };
@@ -99,6 +99,14 @@ function HeroGraphic3D() {
       const angleY = 0.6 + t * 0.00016;
       const tiltX = Math.sin(t * 0.00035) * 0.09;
 
+      // Node positions are authored for a ~480x420 reference size. On
+      // smaller screens (phones) we shrink the whole scene proportionally
+      // instead of letting outer nodes clip off the edge of the canvas.
+      const sceneScale = Math.min(
+        1.15,
+        Math.max(0.45, Math.min(width / 480, height / 420))
+      );
+
       ctx.clearRect(0, 0, width, height);
 
       const world = {};
@@ -106,7 +114,7 @@ function HeroGraphic3D() {
       NODES.forEach((node) => {
         const w = rotate(node.pos, angleY, tiltX);
         world[node.id] = w;
-        screen[node.id] = projectPoint(w, width, height);
+        screen[node.id] = projectPoint(w, width, height, sceneScale);
       });
 
       // glowing edges
@@ -147,7 +155,7 @@ function HeroGraphic3D() {
             lerp(nodeA.pos[2], nodeB.pos[2], t01),
           ];
           const rotated = rotate(worldPos, angleY, tiltX);
-          const p = projectPoint(rotated, width, height);
+          const p = projectPoint(rotated, width, height, sceneScale);
 
           // fade in/out near the ends of the trip
           const edgeFade = Math.sin(Math.PI * t01);
@@ -188,7 +196,7 @@ function HeroGraphic3D() {
         ctx.fill();
         ctx.restore();
 
-        ctx.font = '11px "IBM Plex Mono", monospace';
+        ctx.font = `${Math.max(9, 11 * sceneScale)}px "IBM Plex Mono", monospace`;
         ctx.fillStyle = `rgba(139, 147, 165, ${Math.max(
           0.5,
           Math.min(1, p.scale)

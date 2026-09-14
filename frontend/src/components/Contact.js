@@ -5,6 +5,7 @@ const SERVICE_OPTIONS = [
   'AI Agent Development',
   'RAG Pipeline',
   'Custom Chatbot',
+  'Frontend & UI',
   'Backend & API Engineering',
   'Something else',
 ];

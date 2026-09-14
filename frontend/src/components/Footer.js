@@ -5,7 +5,9 @@ function Footer() {
     <footer className="footer">
       <div className="container">
         <div className="footer-brand">
-          <h3>Akash Barman</h3>
+          <h3>
+            makeColo<span className="brand-r">r</span>s
+          </h3>
           <p>
             Full-stack developer building web applications with AI agents,
             chatbots and RAG pipelines built in from the start.

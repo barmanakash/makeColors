@@ -32,6 +32,14 @@ const SERVICES = [
     stack: ['React', 'Socket.io', 'LLM APIs'],
   },
   {
+    code: 'FE',
+    accent: 'amber',
+    title: 'Frontend UI',
+    description:
+      'we will develope UI phase through Reactjs and MUI. It makes responshive both web and mobile friendly',
+    stack: ['Reactjs', 'HTML & CSS', 'MUI'],
+  },
+  {
     code: 'BE',
     accent: 'amber',
     title: 'Backend & API Engineering',
