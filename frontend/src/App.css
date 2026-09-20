@@ -436,68 +436,7 @@ section {
   font-size: 15px;
 }
 
-/* ---------- About / background strip ---------- */
-.about .container {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 56px;
-  align-items: start;
-}
-
-.about-copy h2 {
-  font-size: 30px;
-}
-
-.about-copy p {
-  margin-top: 18px;
-  font-size: 16px;
-  max-width: 48ch;
-}
-
-.about-stats {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 24px;
-}
-
-.stat {
-  position: relative;
-  border: 1px solid rgba(139, 147, 165, 0.14);
-  border-left: 3px solid var(--border);
-  border-radius: 4px;
-  padding: 24px 26px;
-  background-color: var(--surface);
-  transition: border-color 0.18s ease, transform 0.18s ease,
-    background-color 0.18s ease;
-}
-
-.stat:hover {
-  transform: translateY(-2px);
-  background-color: var(--surface-hover);
-}
-
-.stat--primary {
-  border-left-color: var(--amber);
-}
-
-.stat--teal {
-  border-left-color: var(--teal);
-}
-
-.stat strong {
-  display: block;
-  font-family: 'Fraunces', serif;
-  font-size: 28px;
-  font-weight: 500;
-  color: var(--ink);
-}
-
-.stat span {
-  font-size: 13.5px;
-  color: var(--muted);
-  margin-top: 6px;
-  display: block;
-}
+/* About page styles live in components/About.css */
 
 /* ---------- CTA band ---------- */
 .cta-band {
@@ -699,9 +638,6 @@ section {
   .steps {
     grid-template-columns: 1fr 1fr;
   }
-  .about .container {
-    grid-template-columns: 1fr;
-  }
   .contact-grid {
     grid-template-columns: 1fr;
     gap: 40px;
@@ -800,12 +736,6 @@ section {
   .steps {
     grid-template-columns: 1fr;
   }
-  .about-copy h2 {
-    font-size: 25px;
-  }
-  .about-stats {
-    grid-template-columns: 1fr;
-  }
   .services-grid {
     grid-template-columns: 1fr;
   }
@@ -871,9 +801,6 @@ section {
   }
   .service-card h3 {
     font-size: 19px;
-  }
-  .stat strong {
-    font-size: 24px;
   }
   .contact-form .btn {
     align-self: stretch;

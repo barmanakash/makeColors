@@ -1,0 +1,326 @@
+/* ---------- About page ---------- */
+/* Uses the design tokens (--bg, --surface, --amber, --teal, ...) from App.css */
+
+.about-section {
+  padding: 88px 0;
+}
+
+/* Intro */
+.about-intro-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 56px;
+  align-items: start;
+}
+
+.about-intro h2 {
+  font-size: 38px;
+  margin-top: 10px;
+  max-width: 20ch;
+  letter-spacing: -0.01em;
+}
+
+.about-intro p {
+  margin-top: 18px;
+  font-size: 16.5px;
+  max-width: 54ch;
+}
+
+.about-intro h2 + p {
+  margin-top: 24px;
+}
+
+.about-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 34px;
+}
+
+/* Figures */
+.about-figures {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 20px;
+}
+
+.about-figure {
+  border: 1px solid rgba(139, 147, 165, 0.14);
+  border-left: 3px solid var(--border);
+  border-radius: 4px;
+  padding: 24px 26px;
+  background-color: var(--surface);
+  transition: border-color 0.18s ease, transform 0.18s ease,
+    background-color 0.18s ease;
+}
+
+.about-figure:hover {
+  transform: translateY(-2px);
+  background-color: var(--surface-hover);
+}
+
+.about-figure--primary {
+  border-left-color: var(--amber);
+}
+
+.about-figure--teal {
+  border-left-color: var(--teal);
+}
+
+.about-figure strong {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.about-figure span {
+  display: block;
+  margin-top: 6px;
+  font-size: 13.5px;
+  color: var(--muted);
+}
+
+/* Shared chips */
+.about-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.about-chips span {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 4px 9px;
+}
+
+/* Expertise pillars */
+.about-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.about-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--border);
+  border-radius: 6px;
+  padding: 32px 28px;
+  background-color: var(--surface);
+  transition: border-color 0.18s ease, transform 0.18s ease;
+}
+
+.about-card:hover {
+  transform: translateY(-3px);
+}
+
+.about-card--amber {
+  border-top-color: var(--amber);
+}
+
+.about-card--teal {
+  border-top-color: var(--teal);
+}
+
+.about-card--emerald {
+  border-top-color: var(--emerald);
+}
+
+.about-card-code {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  margin-bottom: 18px;
+}
+
+.about-card--amber .about-card-code {
+  color: var(--amber);
+}
+
+.about-card--teal .about-card-code {
+  color: var(--teal);
+}
+
+.about-card--emerald .about-card-code {
+  color: var(--emerald);
+}
+
+.about-card h3 {
+  font-size: 21px;
+  margin-bottom: 12px;
+}
+
+.about-card p {
+  font-size: 15px;
+}
+
+.about-card .about-chips {
+  margin-top: auto;
+  padding-top: 22px;
+}
+
+/* Why makeColors */
+.about-values {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.about-value {
+  border: 1px solid rgba(139, 147, 165, 0.14);
+  border-left: 3px solid var(--amber);
+  border-radius: 4px;
+  padding: 28px 30px;
+  background-color: var(--surface);
+  transition: transform 0.18s ease, background-color 0.18s ease;
+}
+
+.about-value:hover {
+  transform: translateY(-2px);
+  background-color: var(--surface-hover);
+}
+
+.about-value--teal {
+  border-left-color: var(--teal);
+}
+
+.about-value--emerald {
+  border-left-color: var(--emerald);
+}
+
+.about-value-tag {
+  display: block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12.5px;
+  letter-spacing: 0.02em;
+  color: var(--amber);
+  margin-bottom: 12px;
+}
+
+.about-value--teal .about-value-tag {
+  color: var(--teal);
+}
+
+.about-value--emerald .about-value-tag {
+  color: var(--emerald);
+}
+
+.about-value h3 {
+  font-size: 21px;
+  margin-bottom: 10px;
+}
+
+.about-value p {
+  font-size: 15px;
+}
+
+/* Toolkit */
+.about-toolkit {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.about-toolkit-group {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 24px 22px;
+  background-color: var(--surface);
+}
+
+.about-toolkit-group h3 {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+  margin-bottom: 16px;
+}
+
+/* Principles (re-uses the .step styles from the process page) */
+.about-principles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.about-link {
+  display: inline-block;
+  margin-top: 40px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--amber);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.about-link:hover {
+  color: #709bff;
+  border-bottom-color: currentColor;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1024px) {
+  .about-intro-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+  }
+  .about-toolkit {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 860px) {
+  .about-intro h2 {
+    font-size: 32px;
+  }
+  .about-pillars,
+  .about-principles {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .about-section {
+    padding: 56px 0;
+  }
+  .about-intro h2 {
+    font-size: 27px;
+  }
+  .about-intro p {
+    font-size: 15.5px;
+  }
+  .about-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .about-actions .btn {
+    justify-content: center;
+  }
+  .about-figures,
+  .about-toolkit,
+  .about-values {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .about-card {
+    padding: 28px 24px;
+  }
+  .about-value {
+    padding: 24px 22px;
+  }
+}
+
+@media (max-width: 400px) {
+  .about-intro h2 {
+    font-size: 24px;
+  }
+  .about-figure strong {
+    font-size: 24px;
+  }
+}
