@@ -320,6 +320,28 @@ section {
   transform: translateY(-3px);
 }
 
+/* Landing on /services#some-service (e.g. from the footer):
+   keep the card clear of the fixed navbar and keep it highlighted. */
+.service-card {
+  scroll-margin-top: 112px;
+}
+
+.service-card.is-targeted {
+  transform: translateY(-3px);
+}
+
+.service-card--amber.is-targeted {
+  border-color: var(--amber);
+}
+
+.service-card--teal.is-targeted {
+  border-color: var(--teal);
+}
+
+.service-card--emerald.is-targeted {
+  border-color: var(--emerald);
+}
+
 .service-card--amber:hover {
   border-color: var(--amber);
 }

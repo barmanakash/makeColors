@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { SERVICES } from '../data/services';
 
 function Footer() {
   const year = new Date().getFullYear();
@@ -7,18 +8,12 @@ function Footer() {
     <footer className="footer">
       <div className="container">
         <div className="footer-col">
-          <h4>Products</h4>
-          <Link>AI Agent Development</Link>
-          <Link>AI & Business Automation</Link>
-          <Link>RAG Pipeline</Link>
-          <Link>Custom Chatbot</Link>
-          <Link>Full-Stack Web Development</Link>
-          <Link>Frontend & UI</Link>
-          <Link>Backend & API Integration</Link>
-          <Link>Website Management & Maintenance</Link>
-          <Link>API & Third-Party Integrations</Link>
-          <Link>Deployment & Cloud Solutions</Link>
-          <Link>Website Performance Optimization</Link>
+          <h4>Services</h4>
+          {SERVICES.map((service) => (
+            <Link key={service.slug} to={`/services#${service.slug}`}>
+              {service.title}
+            </Link>
+          ))}
         </div>
 
         <div className="footer-col">
@@ -38,15 +33,12 @@ function Footer() {
             chatbots and RAG pipelines built in from the start.
           </p>
           <div className="footer-col">
-          <h4>Contact</h4>
-          <a href="mailto:1998akashbarman@gmail.com">1998akashbarman@gmail.com</a>
-          <p>+91 62610 81914</p>
-          <p>Jabalpur, Madhya Pradesh, India</p>
+            <h4>Contact</h4>
+            <a href="mailto:1998akashbarman@gmail.com">1998akashbarman@gmail.com</a>
+            <p>+91 62610 81914</p>
+            <p>Jabalpur, Madhya Pradesh, India</p>
+          </div>
         </div>
-          
-        </div>
-
-        
       </div>
 
       <div className="container footer-bottom">
