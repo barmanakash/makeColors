@@ -34,7 +34,7 @@ function Footer() {
           </p>
           <div className="footer-col">
             <h4>Contact</h4>
-            <a href="mailto:akabarman01@gmail.com">1998akashbarman@gmail.com</a>
+            <a href="mailto:akabarman01@gmail.com">akabarman01@gmail.com</a>
             <p>Jabalpur, Madhya Pradesh, India</p>
           </div>
         </div>
