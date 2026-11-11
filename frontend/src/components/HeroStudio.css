@@ -1,0 +1,711 @@
+/* ==========================================================
+   HeroStudio: layered parallax "digital studio" scene
+   ========================================================== */
+
+.studio {
+  position: relative;
+  width: 100%;
+  min-height: 220px;
+}
+
+.studio::before {
+  content: '';
+  position: absolute;
+  inset: 8% 6%;
+  border-radius: 50%;
+  background: radial-gradient(
+    closest-side,
+    rgba(76, 126, 255, 0.28),
+    rgba(56, 182, 166, 0.12) 60%,
+    transparent 100%
+  );
+  filter: blur(30px);
+  animation: studioGlow 7s ease-in-out infinite;
+}
+
+@keyframes studioGlow {
+  0%,
+  100% {
+    transform: scale(0.92);
+    opacity: 0.75;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+.studio-scaler {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform-origin: top center;
+  perspective: 1100px;
+}
+
+.studio-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 0.25s ease-out;
+}
+
+/* ---------- Orbit rings ---------- */
+.ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px dashed rgba(139, 147, 165, 0.28);
+  will-change: transform;
+}
+
+.ring--outer {
+  width: 430px;
+  height: 430px;
+  left: 25px;
+  top: 5px;
+  animation: ringSpin 46s linear infinite;
+}
+
+.ring--inner {
+  width: 290px;
+  height: 290px;
+  left: 95px;
+  top: 75px;
+  border-color: rgba(56, 182, 166, 0.3);
+  animation: ringSpinRev 34s linear infinite;
+}
+
+@keyframes ringSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ringSpinRev {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.orbit-arm {
+  position: absolute;
+  inset: 0;
+  transform: rotate(var(--a));
+}
+
+.orbit-chip {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.orbit-chip > span {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: #0f1420;
+  border: 1px solid rgba(76, 126, 255, 0.55);
+  color: #9fb8ff;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  white-space: nowrap;
+  box-shadow: 0 0 18px rgba(76, 126, 255, 0.35);
+}
+
+.ring--outer .orbit-chip > span {
+  animation: chipKeep 46s linear infinite;
+}
+
+.ring--inner .orbit-chip > span {
+  animation: chipKeepRev 34s linear infinite;
+}
+
+.orbit-chip--teal > span {
+  border-color: rgba(56, 182, 166, 0.6);
+  color: #7fe0d2;
+  box-shadow: 0 0 18px rgba(56, 182, 166, 0.35);
+}
+
+/* keeps chip labels upright while the ring turns */
+@keyframes chipKeep {
+  from {
+    transform: rotate(calc(var(--a) * -1));
+  }
+  to {
+    transform: rotate(calc(var(--a) * -1 - 360deg));
+  }
+}
+
+@keyframes chipKeepRev {
+  from {
+    transform: rotate(calc(var(--a) * -1));
+  }
+  to {
+    transform: rotate(calc(var(--a) * -1 + 360deg));
+  }
+}
+
+/* ---------- Layers ---------- */
+.layer {
+  position: absolute;
+  transform: translateZ(var(--z, 0));
+}
+
+.layer--win {
+  left: 20px;
+  top: 70px;
+  width: 300px;
+}
+
+.layer--code {
+  left: 250px;
+  top: 0;
+  width: 220px;
+}
+
+.layer--chat {
+  left: 262px;
+  top: 262px;
+  width: 208px;
+}
+
+.layer--palette {
+  left: 0;
+  top: 342px;
+  width: 214px;
+}
+
+.float {
+  animation: floatY 6.5s ease-in-out infinite;
+  animation-delay: var(--fd, 0s);
+}
+
+@keyframes floatY {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.glass {
+  background: rgba(15, 19, 29, 0.93);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.5);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.glass:hover {
+  border-color: rgba(76, 126, 255, 0.7);
+  box-shadow: 0 24px 56px rgba(76, 126, 255, 0.28);
+}
+
+/* ---------- Browser window ---------- */
+.win {
+  border-radius: 12px;
+  overflow: hidden;
+  background: #0d111a;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.55);
+}
+
+.win-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 12px;
+  background: #151a27;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.win-bar i,
+.code-head i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #3a4258;
+}
+
+.win-bar i:nth-child(1),
+.code-head i:nth-child(1) {
+  background: #ff6159;
+}
+.win-bar i:nth-child(2),
+.code-head i:nth-child(2) {
+  background: #ffbd2e;
+}
+.win-bar i:nth-child(3),
+.code-head i:nth-child(3) {
+  background: #28c940;
+}
+
+.win-bar span {
+  margin-left: 10px;
+  padding: 3px 12px;
+  border-radius: 10px;
+  background: #0d111a;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: #8b93a5;
+}
+
+.win-body {
+  position: relative;
+  height: 220px;
+  padding: 14px;
+}
+
+.win-hero {
+  height: 92px;
+  padding: 14px;
+  border-radius: 8px;
+  background: linear-gradient(120deg, #1e3a8a, #4c7eff, #38b6a6, #1e3a8a);
+  background-size: 300% 100%;
+  animation: gradShift 9s ease-in-out infinite;
+}
+
+@keyframes gradShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.win-hero b {
+  display: block;
+  height: 9px;
+  margin-bottom: 8px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.win-hero .w60 {
+  width: 60%;
+}
+.win-hero .w40 {
+  width: 40%;
+  opacity: 0.6;
+}
+
+.win-btn {
+  position: relative;
+  display: inline-block;
+  margin-top: 4px;
+  padding: 5px 12px;
+  border-radius: 12px;
+  background: #fff;
+  color: #0b0e14;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.ripple {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  border: 2px solid #fff;
+  opacity: 0;
+  animation: rippleOut 8s ease-out infinite;
+}
+
+@keyframes rippleOut {
+  0%,
+  35% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  37% {
+    opacity: 0.9;
+  }
+  48%,
+  100% {
+    opacity: 0;
+    transform: scale(1.9, 2.3);
+  }
+}
+
+.win-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  height: 96px;
+  margin-top: 12px;
+}
+
+.win-card {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  padding: 8px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.win-card:hover {
+  border-color: #4c7eff;
+  background: rgba(76, 126, 255, 0.1);
+}
+
+.win-card s {
+  flex: 1;
+  height: var(--h);
+  border-radius: 3px;
+  background: linear-gradient(180deg, #4c7eff, rgba(76, 126, 255, 0.2));
+  transform-origin: bottom;
+  animation: barPulse 3s ease-in-out infinite;
+  animation-delay: var(--bd, 0s);
+}
+
+@keyframes barPulse {
+  0%,
+  100% {
+    transform: scaleY(0.6);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+.win-cursor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.5));
+  animation: cursorPath 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes cursorPath {
+  0% {
+    transform: translate(210px, 30px) scale(1);
+  }
+  30% {
+    transform: translate(60px, 76px) scale(1);
+  }
+  34% {
+    transform: translate(60px, 76px) scale(0.82);
+  }
+  38% {
+    transform: translate(60px, 76px) scale(1);
+  }
+  68% {
+    transform: translate(190px, 150px) scale(1);
+  }
+  100% {
+    transform: translate(210px, 30px) scale(1);
+  }
+}
+
+/* ---------- Code editor ---------- */
+.code-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  padding: 0 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.code-head span {
+  margin-left: 8px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: #8b93a5;
+}
+
+.code-body {
+  padding: 12px 12px 14px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+.code-line {
+  width: calc(var(--n) * 1ch);
+  overflow: hidden;
+  white-space: pre;
+  animation: typeLine 9s steps(var(--n)) infinite backwards;
+  animation-delay: calc(var(--i) * 0.6s);
+}
+
+.code-line:last-child::after {
+  content: '';
+  display: inline-block;
+  width: 7px;
+  height: 13px;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  background: #4c7eff;
+  animation: blink 1s steps(2) infinite;
+}
+
+@keyframes typeLine {
+  0% {
+    width: 0;
+  }
+  6%,
+  88% {
+    width: calc(var(--n) * 1ch);
+  }
+  100% {
+    width: 0;
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.c-k {
+  color: #c06cff;
+}
+.c-f {
+  color: #7ea2ff;
+}
+.c-s {
+  color: #2ecf82;
+}
+.c-p {
+  color: #aab2c5;
+}
+
+/* ---------- AI chat ---------- */
+.chat {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+}
+
+.chat-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.chat-avatar {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4c7eff, #38b6a6);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.chat-head strong {
+  display: block;
+  font-size: 12px;
+  color: #eceef3;
+}
+
+.chat-head small {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  color: #8b93a5;
+}
+
+.chat-head small i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #2ecf82;
+  animation: pulseRing2 2s ease-out infinite;
+}
+
+@keyframes pulseRing2 {
+  0% {
+    box-shadow: 0 0 0 0 rgba(46, 207, 130, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 0 7px rgba(46, 207, 130, 0);
+  }
+}
+
+.chat-msg {
+  max-width: 88%;
+  margin-top: 8px;
+  padding: 7px 11px;
+  border-radius: 12px;
+  font-size: 12px;
+  line-height: 1.4;
+  animation: msgIn 8s ease infinite backwards;
+  animation-delay: var(--s);
+}
+
+.chat-msg--user {
+  align-self: flex-end;
+  background: #4c7eff;
+  color: #fff;
+  border-bottom-right-radius: 3px;
+}
+
+.chat-msg--ai {
+  align-self: flex-start;
+  background: rgba(255, 255, 255, 0.08);
+  color: #e3e7f0;
+  border-bottom-left-radius: 3px;
+}
+
+.chat-typing {
+  display: inline-flex;
+  gap: 4px;
+  margin-top: 10px;
+  padding: 7px 11px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  align-self: flex-start;
+  animation: msgIn 8s ease infinite backwards;
+  animation-delay: var(--s);
+}
+
+.chat-typing i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #8b93a5;
+  animation: dotBounce 1.2s ease-in-out infinite;
+}
+
+.chat-typing i:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.chat-typing i:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes dotBounce {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+
+@keyframes msgIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+  6%,
+  88% {
+    opacity: 1;
+    transform: none;
+  }
+  96%,
+  100% {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
+/* ---------- Palette ---------- */
+.palette {
+  padding: 12px 14px 14px;
+}
+
+.palette small {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: #8b93a5;
+}
+
+.swatches {
+  display: flex;
+  gap: 9px;
+  margin-top: 12px;
+}
+
+.swatch {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: var(--c);
+  cursor: pointer;
+  box-shadow: 0 6px 16px color-mix(in srgb, var(--c) 45%, transparent);
+  animation: swatchBob 3.2s ease-in-out infinite;
+  animation-delay: var(--sd);
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.swatch:hover {
+  transform: translateY(-7px) scale(1.18) rotate(-6deg);
+}
+
+.swatch::after {
+  content: attr(data-hex);
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: #000;
+  color: #fff;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.swatch:hover::after {
+  opacity: 1;
+}
+
+@keyframes swatchBob {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -5px;
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .code-line,
+  .chat-msg,
+  .chat-typing,
+  .win-cursor,
+  .ripple,
+  .float,
+  .ring,
+  .ring .orbit-chip > span {
+    animation: none !important;
+  }
+  .code-line {
+    width: calc(var(--n) * 1ch);
+  }
+  .win-cursor {
+    transform: translate(60px, 76px);
+  }
+}

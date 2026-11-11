@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import HeroGraphic3D from './HeroGraphic3D';
+import HeroStudio from './HeroStudio';
 import { spotlight } from '../hooks/useReveal';
 
 const WORDS = ['thinks', 'learns', 'scales', 'converts'];
@@ -72,7 +72,7 @@ function Hero() {
         </div>
 
         <div className="reveal reveal--right" style={{ '--d': '200ms' }}>
-          <HeroGraphic3D />
+          <HeroStudio />
         </div>
       </div>
 
