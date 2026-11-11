@@ -57,7 +57,7 @@ function Hero() {
 
           <div className="hero-meta reveal" style={{ '--d': '320ms' }}>
             <div>
-              <strong>2+ yrs</strong>
+              <strong>5+ yrs</strong>
               <span>Professional dev experience</span>
             </div>
             <div>
