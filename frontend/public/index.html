@@ -5,6 +5,18 @@
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#0B0E14" />
+    <script>
+      // Apply the saved theme before first paint so the page never flashes.
+      // Dark is the default; the toggle in the navbar saves the choice.
+      (function () {
+        var theme = 'dark';
+        try {
+          var saved = localStorage.getItem('mc-theme');
+          if (saved === 'light' || saved === 'dark') theme = saved;
+        } catch (e) {}
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
     <meta
       name="description"
       content="Akash Barman — Full-stack developer building web applications with AI agents, chatbots, and RAG pipelines woven in."

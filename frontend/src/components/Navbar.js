@@ -1,9 +1,19 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import AnimatedBrand from './AnimatedBrand';
+import ThemeToggle from './ThemeToggle';
 
 function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  // The bar tightens and gets a stronger glow once the page is scrolled.
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const links = [
     { label: 'Services', to: '/services' },
@@ -13,7 +23,7 @@ function Navbar() {
   ];
 
   return (
-    <header className="navbar">
+    <header className={`navbar${scrolled ? ' is-scrolled' : ''}`}>
       <div className="container">
         <Link to="/" className="nav-brand">
           <AnimatedBrand text="makeColors" />
@@ -32,13 +42,14 @@ function Navbar() {
         </nav>
 
         <div className="nav-cta">
+          <ThemeToggle />
           <Link to="/contact" className="btn btn-primary">
             Start a project
           </Link>
         </div>
 
         <button
-          className="nav-toggle"
+          className={`nav-toggle${open ? ' is-open' : ''}`}
           aria-label="Toggle menu"
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
